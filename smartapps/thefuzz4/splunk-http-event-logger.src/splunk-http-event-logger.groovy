@@ -174,8 +174,8 @@ log.debug("unit: ${evt.unit}")
 
 def json = ""
 json += "{\"event\":"
-//json += "{\"date\":\"${evt.date}\","
-json += "{\"name\":\"${evt.name}\","
+json += "{\"date\":\"${evt.date}\","
+json += "\"name\":\"${evt.name}\","
 json += "\"displayName\":\"${evt.displayName}\","
 json += "\"device\":\"${evt.device}\","
 json += "\"deviceId\":\"${evt.deviceId}\","
