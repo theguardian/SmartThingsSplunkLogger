@@ -123,26 +123,26 @@ def initialize() {
 }
 
 def doSubscriptions() {
-  subscribe(alarms,	"alarm",	alarmHandler)
-  subscribe(codetectors,	"carbonMonoxideDetector",	coHandler)
-  subscribe(contacts,	"contact", contactHandler)
-  subscribe(indicators,	"indicator", indicatorHandler)
-  subscribe(modes,	"locationMode", modeHandler)
-  subscribe(motions,	"motion", motionHandler)
-  subscribe(presences,	"presence", presenceHandler)
-  subscribe(relays,	"relaySwitch", relayHandler)
-  subscribe(smokedetectors,	"smokeDetector",	smokeHandler)
-  subscribe(switches,	"switch", switchHandler)
-  subscribe(levels,	"level",	levelHandler)
-  subscribe(temperatures,	"temperature", temperatureHandler)
-  subscribe(waterdetectors,	"water",	waterHandler)
-  subscribe(location,	"location",	locationHandler)
+  subscribe(alarms, "alarm", alarmHandler)
+  subscribe(codetectors, "carbonMonoxideDetector", coHandler)
+  subscribe(contacts, "contact", contactHandler)
+  subscribe(indicators, "indicator", indicatorHandler)
+  subscribe(modes, "locationMode", modeHandler)
+  subscribe(motions, "motion", motionHandler)
+  subscribe(presences, "presence", presenceHandler)
+  subscribe(relays, "relaySwitch", relayHandler)
+  subscribe(smokedetectors, "smokeDetector", smokeHandler)
+  subscribe(switches, "switch", switchHandler)
+  subscribe(levels, "level", levelHandler)
+  subscribe(temperatures, "temperature", temperatureHandler)
+  subscribe(waterdetectors, "water", waterHandler)
+  subscribe(location, "location", locationHandler)
   subscribe(accelerations, "acceleration", accelerationHandler)
   subscribe(energymeters, "energy", energyHandler)
   subscribe(musicplayers, "music", musicHandler)
-  subscribe(lightSensor,	"illuminance",	illuminanceHandler)
-  subscribe(powermeters,	"power",	powerHandler)
-  subscribe(batteries,	"battery", batteryHandler)
+  subscribe(lightSensor, "illuminance", illuminanceHandler)
+  subscribe(powermeters, "power", powerHandler)
+  subscribe(batteries, "battery", batteryHandler)
   subscribe(button, "button", buttonHandler)
   subscribe(voltageMeasurement, "voltage", voltageHandler)
   subscribe(lockDevice, "lock", lockHandler)
@@ -193,18 +193,19 @@ def genericHandler(evt) {
   json += "\"unit\":\"${evt.unit}\","
   json += "\"origin\":\"${evt.source}\"}"
   json += "}"
+
   //log.debug("JSON: ${json}")
+
   def ssl = use_ssl.toBoolean()
   def local = use_local.toBoolean()
   def http_protocol
   def splunk_server = "${splunk_host}:${splunk_port}"
   def length = json.getBytes().size().toString()
-  def msg = parseLanMessage(description)
-  def body = msg.body
-  def status = msg.status
+  //def msg = parseLanMessage(description)
+  //def body = msg.body
+  //def status = msg.status
 
   if (local == true) {
-    //sendHubCommand(new physicalgraph.device.HubAction([
     def result = (new physicalgraph.device.HubAction([
       method: "POST",
       path: "/services/collector/event",
@@ -217,9 +218,8 @@ def genericHandler(evt) {
       ],
       body:json
     ]))
-    log.debug result
+    //log.debug result
     sendHubCommand(result);
-    return result
   }
   else {
     //log.debug "Use Remote"
@@ -240,10 +240,10 @@ def genericHandler(evt) {
       ],
       body: json
     ]
-    log.debug params
+    //log.debug params
     try {
       httpPostJson(params)
-    } 
+    }
     catch ( groovyx.net.http.HttpResponseException ex ) {
       log.debug "Unexpected response error: ${ex.statusCode}"
     }
