@@ -173,6 +173,7 @@ log.debug("unit: ${evt.unit}")
 */
 
 def json = ""
+json += "{\"event\":"
 json += "{\"date\":\"${evt.date}\","
 json += "\"name\":\"${evt.name}\","
 json += "\"displayName\":\"${evt.displayName}\","
@@ -191,6 +192,7 @@ json += "\"location\":\"${evt.location}\","
 json += "\"locationId\":\"${evt.locationId}\","
 json += "\"unit\":\"${evt.unit}\","
 json += "\"origin\":\"${evt.source}\"}"
+json += "}"
 //log.debug("JSON: ${json}")
 def ssl = use_ssl.toBoolean()
 def local = use_local.toBoolean()
