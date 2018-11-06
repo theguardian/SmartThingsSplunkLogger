@@ -150,28 +150,6 @@ def doSubscriptions() {
 }
 
 def genericHandler(evt) {
-  /*
-  log.debug("------------------------------")
-  log.debug("date: ${evt.date}")
-  log.debug("name: ${evt.name}")
-  log.debug("displayName: ${evt.displayName}")
-  log.debug("device: ${evt.device}")
-  log.debug("deviceId: ${evt.deviceId}")
-  log.debug("value: ${evt.value}")
-  log.debug("isStateChange: ${evt.isStateChange()}")
-  log.debug("id: ${evt.id}")
-  log.debug("description: ${evt.description}")
-  log.debug("descriptionText: ${evt.descriptionText}")
-  log.debug("installedSmartAppId: ${evt.installedSmartAppId}")
-  log.debug("isoDate: ${evt.isoDate}")
-  log.debug("isDigital: ${evt.isDigital()}")
-  log.debug("isPhysical: ${evt.isPhysical()}")
-  log.debug("location: ${evt.location}")
-  log.debug("locationId: ${evt.locationId}")
-  log.debug("source: ${evt.source}")
-  log.debug("unit: ${evt.unit}")
-  */
-
   def json = ""
   json += "{\"event\":"
   json += "{\"date\":\"${evt.date}\","
@@ -201,18 +179,15 @@ def genericHandler(evt) {
   def http_protocol
   def splunk_server = "${splunk_host}:${splunk_port}"
   def length = json.getBytes().size().toString()
-  //def msg = parseLanMessage(description)
-  //def body = msg.body
-  //def status = msg.status
 
   if (local == true) {
     def result = (new physicalgraph.device.HubAction([
       method: "POST",
       path: "/services/collector/event",
       headers: [
-        'Authorization': "Splunk ${splunk_token}",
+        "Authorization": "Splunk ${splunk_token}",
         "Content-Length":"${length}",
-        HOST: "${splunk_server}",
+        "Host": "${splunk_server}",
         "Content-Type":"application/json",
         "Accept-Encoding":"gzip,deflate"
       ],
@@ -234,9 +209,9 @@ def genericHandler(evt) {
     }
 
     def params = [
-      uri: "${http_protocol}://${splunk_host}:${splunk_port}/services/collector/event",
+      uri: "${http_protocol}://${splunk_server}/services/collector/event",
       headers: [
-        'Authorization': "Splunk ${splunk_token}"
+        "Authorization": "Splunk ${splunk_token}"
       ],
       body: json
     ]
