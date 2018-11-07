@@ -27,9 +27,9 @@ definition(
   author: "Brian Keifer and Jason Hamilton",
   description: "Log SmartThings events to a Splunk HTTP Event Collector server",
   category: "Convenience",
-  iconUrl: "http://apmblog.dynatrace.com/wp-content/uploads/2014/07/Splunk_thumbnail.png",
-  iconX2Url: "http://apmblog.dynatrace.com/wp-content/uploads/2014/07/Splunk_thumbnail.png",
-  iconX3Url: "http://apmblog.dynatrace.com/wp-content/uploads/2014/07/Splunk_thumbnail.png"
+  iconUrl: "https://www.splunk.com/content/dam/splunk2/images/icons/products-solutions/splunk-icon-01.png",
+  iconX2Url: "https://www.splunk.com/content/dam/splunk2/images/icons/products-solutions/splunk-icon-01.png",
+  iconX3Url: "https://www.splunk.com/content/dam/splunk2/images/icons/products-solutions/splunk-icon-01.png"
   )
 
 preferences {
