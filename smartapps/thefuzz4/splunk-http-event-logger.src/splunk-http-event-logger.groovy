@@ -153,7 +153,7 @@ def genericHandler(evt) {
   def json = ""
   json += "{\"event\":"
   json += "{\"date\":\"${evt.date}\","
-  json += "\"name\":\"${evt.name}\","
+  json += "\"type\":\"${evt.name}\","
   json += "\"displayName\":\"${evt.displayName}\","
   json += "\"device\":\"${evt.device}\","
   json += "\"deviceId\":\"${evt.deviceId}\","
