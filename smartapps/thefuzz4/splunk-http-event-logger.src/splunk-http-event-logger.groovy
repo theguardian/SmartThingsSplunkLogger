@@ -51,6 +51,9 @@ preferences {
   section("Log these humidity sensors:") {
     input "humidities", "capability.relativeHumidityMeasurement", multiple: true, required: false
   }
+  section("Log these thermostats:") {
+    input "thermostats", "capability.thermostat", multiple: true, required: false
+  }
   section("Log these contact sensors:") {
     input "contacts", "capability.contactSensor", multiple: true, required: false
   }
@@ -147,6 +150,11 @@ def doSubscriptions() {
   subscribe(voltageMeasurement, "voltage", voltageHandler)
   subscribe(lockDevice, "lock", lockHandler)
   subscribe(humidities, "humidity", humidityHandler)
+  subscribe(thermostats, "thermostatOperatingState", thermostatHandler)
+  subscribe(thermostats, "thermostatMode", thermostatHandler)
+  subscribe(thermostats, "thermostatFanMode", thermostatHandler)
+  subscribe(thermostats, "heatingSetpoint", thermostatHandler)
+  subscribe(thermostats, "coolingSetpoint", thermostatHandler)
 }
 
 def genericHandler(evt) {
@@ -318,5 +326,9 @@ def voltageHandler(evt) {
 }
 
 def lockHandler(evt) {
+  genericHandler(evt)
+}
+
+def thermostatHandler(evt) {
   genericHandler(evt)
 }
